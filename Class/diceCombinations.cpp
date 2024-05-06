@@ -18,8 +18,8 @@ int getTotalCombinations(vector<int> coins, int x){
 
 int main(){ 
     int n_coins = 3;
-    int sum = 9;
-    vector<int> coins = {2,3,5};
+    int sum = 15;
+    vector<int> coins = {1,4,5};
 
     int ans = getTotalCombinations(coins, sum);
     cout << ans;
