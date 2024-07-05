@@ -10,9 +10,9 @@
   <img src="https://github.com/codedmachine111/APS/assets/88738817/acd3df2e-42ba-45bf-961a-3bc00530d6fd" width="300" alt="HLD-Youtube">
 </p>
 
-YouTube is the world's largest video-sharing platform and operates on a very complex technological infrastructure. With over 2 billion monthly active users, more than 500 hours of videos are posted to YouTube every minute. Daily views of YouTube Shorts, a feature for short video content, are 15 billion. YouTube launched a $100 million Shorts Fund to entice Creators to experiment with producing short-form videos. Approximately 30,000 hours of video are uploaded to YouTube every hour by artists. Every week, 92% of internet users watch some form of YouTube video. YouTube also has the second-largest search engine in the world. Branded searches make up 52% of the top 100 queries. Leading countries based on YouTube audience size are the US, India, Japan, and Indonesia.
+YouTube is the world's largest video-sharing platform and operates on a complex technological infrastructure. With over 2 billion monthly active users, more than 500 hours of videos are posted to YouTube every minute. Daily views of YouTube Shorts, a feature for short video content, are 15 billion. YouTube launched a $100 million Shorts Fund to entice Creators to experiment with producing short-form videos. Approximately 30,000 hours of video are uploaded to YouTube every hour by artists. Every week, 92% of internet users watch some form of YouTube video. YouTube also has the second-largest search engine in the world. Branded searches make up 52% of the top 100 queries. Leading countries based on YouTube audience size are the US, India, Japan, and Indonesia.
 
-The smooth experience that users and creators enjoy is possible due to a variety of data structures and algorithms working under the hood. These technologies ensure efficient data management, personalized recommendations, optimized streaming, and much more. This portfolio explores the critical role of various data structures and algorithms that can potentially enhance YouTube's features and functionalities. By examining existing and potential use cases for these technologies, this portfolio aims to provide a comprehensive understanding of their impact on the platform.
+The smooth experience that users and creators enjoy is possible due to various data structures and algorithms working under the hood. These technologies ensure efficient data management, personalized recommendations, optimized streaming, and much more. This portfolio explores the critical role of various data structures and algorithms that can potentially enhance YouTube's features and functionalities. By examining existing and potential use cases for these technologies, this portfolio aims to provide a comprehensive understanding of their impact on the platform.
 
 ### Objectives
 - Categorize features and underlying technologies of YouTube.
@@ -31,11 +31,11 @@ Initially, when the creator tries to upload a video to YouTube, the file is dire
 ## Business Use Cases
 
 #### 1. Video Transcoding
-Youtube handles more than 500 hours of video data being uploaded to it every minute. The time for processing these videos will significantly impact the latency and user experience. Transcoding is a computationally intensive operation that is done only once while uploading the videos. Compression algorithms like HEVC (High Efficiency Video Coding) can be used here to compress the video into multiple formats and resolutions. Huffman coding algorithm can be potentially used for compressing the significant amount of metadata like video duration, title, description, tags, subtitles etc. The uploaded video can be seperated into video and audio components and algorithms like AAC (Advanced Audio Coding) can be used to convert it audio into multiple formats and bitrates.
+YouTube handles more than 500 hours of video data being uploaded to it every minute. The time for processing these videos will significantly impact the latency and user experience. Transcoding is a computationally intensive operation that is done only once while uploading the videos. Compression algorithms like HEVC (High-Efficiency Video Coding) can be used here to compress the video into multiple formats and resolutions. Huffman coding algorithm can be potentially used for compressing a significant amount of metadata like video duration, title, description, tags, subtitles, etc. The uploaded video can be separated into video and audio components and algorithms like AAC (Advanced Audio Coding) can be used to convert audio into multiple formats and bitrates.
 
 **Challenges**: Handling large video data, Efficient and fast video processing.
 
-**Market Benefits**: Efficient data storage, Continuous playback on all devices.
+**Market Benefits**: Efficient data storage and continuous playback on all devices.
 
 **Design techniques and algorithms:**  
 - **Huffman coding:** Greedy technique
@@ -44,8 +44,8 @@ Youtube handles more than 500 hours of video data being uploaded to it every min
 [View Implementation](https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/)
 
 #### 2. Directed Acyclic Graph (DAG) for transcoding pipeline
-Different creators have different video processing requirements. Some might add a custom thumbnail, watermarks or upload a high definition video whereas others do not. To support these processing pipelines and maintain parallelism a DAG model can be used which defines tasks in stages so that they can be executed parallely or sequentially. These tasks can be scheduled using Topological sort.  
-A resource manager can be used for managing the efficiency of resource allocation. It needs to have 3 queues: the "Task queue" which a priority queue that contains the tasks to be executed; the "Worker queue" which is also a priority queue that contains information about worker utilization; and the "Running queue" that contains information about currently running tasks and workers. The task scheduler picks
+Different creators have different video processing requirements. Some might add a custom thumbnail, watermarks, or upload a high-definition video whereas others do not. To support these processing pipelines and maintain parallelism a DAG model can be used which defines tasks in stages so that they can be executed parallelly or sequentially. These tasks can be scheduled using the Topological sort.  
+A resource manager can be used for managing the efficiency of resource allocation. It needs to have 3 queues: the "Task queue" which is a priority queue that contains the tasks to be executed; the "Worker queue" which is also a priority queue that contains information about worker utilization; and the "Running queue" that contains information about currently running tasks and workers. The task scheduler picks
 
 **Challenges**: Allocation of available resources.
 
@@ -53,14 +53,14 @@ A resource manager can be used for managing the efficiency of resource allocatio
 
 **Design techniques and algorithms:**  
 -  **Topological Sort for DAGs:** DFS based solution
-   - **Time Complexity:** O(V+E) where V represents number of tasks and E represents the dependencies/ edges of DAG.
+   - **Time Complexity:** O(V+E) where V represents several tasks and E represents the dependencies/ edges of DAG.
    - **Space Complexity:** O(V). The extra space is needed for the stack.
 -  **Priority queues** Min/Max heap, C++ std::priority_queue
    - **Time Complexity:** O(logN) for insertion and deletion (push and pop)
    - **Space Complexity:** O(N)
 
 #### 3. Routing the data
-The data packets of the video need to flow through several nodes including servers, data centers, CDNs and several network core components before it reaches the viewer's device. To find the most optimal path to route the data, the network can be abstracted as a graph where each node represents a network device, an edge between two connected devices represents the link with a cost associated with it. The link-cos (edge weight) can be decided based on various factors like bandwidth, financial costs, congestion, etc. The Dijkstra's algorithm can be used here to find the shortest path from a source node to all other nodes on the network, minimizing latency at all stages by avoiding congested routes. If the network topology is fairly stable, the Floyd-Warshall algorithm can also be used to create a matrix of shortest path (for all node pairs) as a pre-compute for faster lookups in routing.
+The data packets of the video need to flow through several nodes including servers, data centers, CDNs, and several network core components before they reach the viewer's device. To find the most optimal path to route the data, the network can be abstracted as a graph where each node represents a network device, and an edge between two connected devices represents the link with a cost associated with it. The link-cos (edge weight) can be decided based on various factors like bandwidth, financial costs, congestion, etc. The Dijkstra's algorithm can be used here to find the shortest path from a source node to all other nodes on the network, minimizing latency at all stages by avoiding congested routes. If the network topology is fairly stable, the Floyd-Warshall algorithm can also be used to create a matrix of shortest path (for all node pairs) as a pre-compute for faster lookups in routing.
 
 **Challenges**: High traffic, Fluctuating network conditions.
 
@@ -68,7 +68,7 @@ The data packets of the video need to flow through several nodes including serve
 
 **Design techniques and algorithms:**  
 -  **Dijkstra's Algorithm:** Priority queue
-   - **Time Complexity:** O((V+E)logV) where V represents number of vertices/nodes and E represents the edges/links of the graphs.
+   - **Time Complexity:** O((V+E)logV) where V represents several vertices/nodes and E represents the edges/links of the graphs.
    - **Space Complexity:** O(V) for storing distances.
 -  **Floyd Warshall** Dynamic programming approach
    - **Time Complexity:** O(V^3) where V is the number of vertices in the graph.
