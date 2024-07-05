@@ -19,7 +19,7 @@ The smooth experience that users and creators enjoy is possible due to a variety
 - Identify key algorithms, data structures, or system design techniques currently in use or with potential applications in enhancing YouTube's features.
 - Create a resource that can be used for educational purposes to understand the intersection of data structures, algorithms, and real-world applications in a large-scale platform like YouTube.
 
-### Journey of the content
+## Journey of the content
 
 Let's explore the journey of a video from the creator to the viewer before we explore the business cases. There are three stakeholders in the content lifecycle: The **Creators** who record, edit, and upload videos; the **YouTube platform** where the video is uploaded and stored in the data centers; and finally, the **Viewers** who watch the video.
 <p align="center">
@@ -28,7 +28,7 @@ Let's explore the journey of a video from the creator to the viewer before we ex
 
 Initially, when the creator tries to upload a video to YouTube, the file is directed to **Upload servers** that facilitate uploading the file from the client's device to a BLOB storage. After the video is uploaded and stored, they are fetched by the **Transcoding server** for processing and encoding the video to different bitrates and formats. The transcoded videos are distributed to Content Delivery Networks (CDNs) that are strategically and geographically placed. When the viewer starts streaming a video, they get the first segment of that video from the nearest CDN, and streaming protocols like MPEG-DASH help stream segments adaptively based on the viewer's network bandwidth.
 
-### Business Use Cases
+## Business Use Cases
 
 #### 1. Video Transcoding
 Youtube handles more than 500 hours of video data being uploaded to it every minute. The time for processing these videos will significantly impact the latency and user experience. Transcoding is a computationally intensive operation that is done only once while uploading the videos. Compression algorithms like HEVC (High Efficiency Video Coding) can be used here to compress the video into multiple formats and resolutions. Huffman coding algorithm can be potentially used for compressing the significant amount of metadata like video duration, title, description, tags, subtitles etc. The uploaded video can be seperated into video and audio components and algorithms like AAC (Advanced Audio Coding) can be used to convert it audio into multiple formats and bitrates.
@@ -38,21 +38,41 @@ Youtube handles more than 500 hours of video data being uploaded to it every min
 **Market Benefits**: Efficient data storage, Continuous playback on all devices.
 
 **Design techniques and algorithms:**  
-1. **Huffman coding:** Greedy technique
+- **Huffman coding:** Greedy technique
    - **Time Complexity:** O(nlog(n)) where n is number of unique characters.
    - **Space Complexity:** Linear [O(n)], for storing Huffman tree and encoded data.   
 [View Implementation](https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/)
 
 #### 2. Directed Acyclic Graph (DAG) for transcoding pipeline
-Different creators have different video processing requirements. Some might add a custom thumbnail, watermarks or upload a high definition video whereas others do not. Tu support these processing pipelines and maintain parallelism a DAG model can be used which defines tasks in stages so that they can be executed parallely or sequentially. These tasks can be scheduled using Topological sort.
+Different creators have different video processing requirements. Some might add a custom thumbnail, watermarks or upload a high definition video whereas others do not. To support these processing pipelines and maintain parallelism a DAG model can be used which defines tasks in stages so that they can be executed parallely or sequentially. These tasks can be scheduled using Topological sort.  
+A resource manager can be used for managing the efficiency of resource allocation. It needs to have 3 queues: the "Task queue" which a priority queue that contains the tasks to be executed; the "Worker queue" which is also a priority queue that contains information about worker utilization; and the "Running queue" that contains information about currently running tasks and workers. The task scheduler picks
+
 **Challenges**: Allocation of available resources.
 
 **Market Benefits**: Efficient resource management, Minimized cost.
 
 **Design techniques and algorithms:**  
-1. **Topological Sort for DAGs:** DFS based solution
+-  **Topological Sort for DAGs:** DFS based solution
    - **Time Complexity:** O(V+E) where V represents number of tasks and E represents the dependencies/ edges of DAG.
    - **Space Complexity:** O(V). The extra space is needed for the stack.
+-  **Priority queues** Min/Max heap, C++ std::priority_queue
+   - **Time Complexity:** O(logN) for insertion and deletion (push and pop)
+   - **Space Complexity:** O(N)
+
+#### 3. Routing the data
+The data packets of the video need to flow through several nodes including servers, data centers, CDNs and several network core components before it reaches the viewer's device. To find the most optimal path to route the data, the network can be abstracted as a graph where each node represents a network device, an edge between two connected devices represents the link with a cost associated with it. The link-cos (edge weight) can be decided based on various factors like bandwidth, financial costs, congestion, etc. The Dijkstra's algorithm can be used here to find the shortest path from a source node to all other nodes on the network, minimizing latency at all stages by avoiding congested routes. If the network topology is fairly stable, the Floyd-Warshall algorithm can also be used to create a matrix of shortest path (for all node pairs) as a pre-compute for faster lookups in routing.
+
+**Challenges**: High traffic, Fluctuating network conditions.
+
+**Market Benefits**: Reduced latency, Cost savings.
+
+**Design techniques and algorithms:**  
+-  **Dijkstra's Algorithm:** Priority queue
+   - **Time Complexity:** O((V+E)logV) where V represents number of vertices/nodes and E represents the edges/links of the graphs.
+   - **Space Complexity:** O(V) for storing distances.
+-  **Floyd Warshall** Dynamic programming approach
+   - **Time Complexity:** O(V^3) where V is the number of vertices in the graph.
+   - **Space Complexity:** O(V^2), to create a 2-D matrix that stores the shortest distance for each pair of nodes.
 
 ### References
 - [YouTube Market Stats](https://www.simplilearn.com/youtube-marketing-stats-article)
