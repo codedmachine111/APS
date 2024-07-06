@@ -135,5 +135,33 @@ The viewers can sometimes search for longer titles in the search bar. Autocomple
    - **Time Complexity:** O(K) for insertion and searching where K is the length of the string.
    - **Space Complexity:** O(N*avgK) where N is the number of words and avgK is the average length of the words.
 
+#### 9. Personalized playlist 
+Youtube creates a personalized playlist of most viewed videos and the videos similar to it. It also reccommends video when you watch series of videos, for example if user is watching "Gate smashers - Operating Systems Part 1", the next parts will be recommended as "Mix" playlist. However, recommending the part 3 after part 1 is not ideal. Topological sort can be used here if every video of the playlist is treated as a node of a DAG (Directed Acyclic Graph) with directed edges between two videos to represent the dependencies. The topological sort algorithm will arrange the videos in a linear order.
+
+**Challenges**: Addiotional processing, manual curation of metadata, support for new videos added.
+
+**Market Benefits**: Enhanced flexiblity of watching videos.
+
+**Design techniques and algorithms:**  
+-  **Topological Sort for DAGs:** DFS based solution
+   - **Time Complexity:** O(V+E) where V represents several tasks and E represents the dependencies/ edges of DAG.
+   - **Space Complexity:** O(V). The extra space is needed for the stack.
+ 
+#### 10. Content monitoring
+With billions of users on the platform of all age groups, it becomes important to block harmful content and hate speech in the content. This can include explicit speech in comments or in the video. String matching algorithms can be used to detect such words from a wordlist and remove the content or the account associated with it if number of strikes on the account increases the threshold. The audio from the video can be transcribed or subtitles can be used to detect the explicit words. The comment check can be handled in both the frontend and backend.
+
+**Challenges**: False positives during processing, Additional processing.
+
+**Market Benefits**: Enhanced safety of the platform, Protection of viewers.
+
+**Design techniques and algorithms:**  
+-  **String matching Algorithm Rabin-Karp:** Hashing based
+   - **Time Complexity:** O(N+M) where N is length of text/string, and M is length of the pattern (explicit word).
+   - **Space Complexity:** O(1) Auxiliary Space
+
+
+#### 11. User activity tracking
+
+     
 ### References
 - [YouTube Market Stats](https://www.simplilearn.com/youtube-marketing-stats-article)
