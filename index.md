@@ -99,5 +99,41 @@ Viewers interact with videos in many ways like linking, commenting, sharing, and
 **Design techniques and algorithms:**  
 -  **Collaborative filtering: ALS Algorithm** 
 
+#### 6. Autocorrect search query
+The viewers can search for their favorite videos using the search bar. Autocorrecting the misspelled words can increase the search accuracy. A Trie data structure can be used to correct misspelled words by providing the closest match. A dictionary of words is stored in the trie and as the user types, matching words can be suggested based on the entered prefix/word.
+
+**Challenges**: Real-time correction, predicting user's intent.
+
+**Market Benefits**: Improved user experience and increased user retention rates.
+
+**Design techniques and algorithms:**  
+-  **Trie Data Structure** Greedy approach, heuristic-based
+   - **Time Complexity:** O(K) for insertion and searching where K is the length of the string.
+   - **Space Complexity:** O(N*avgK) where N is the number of words and avgK is the average length of the words.
+
+#### 7. Managing Traffic
+YouTube serves videos for about 122 million users per day. That's a huge amount of video requests, especially during viral events like a stream of the 2024 World Cup parade in Mumbai. To optimize the network resource utilization, Max flow algorithms like Ford-Fulkerson can help assist load balancing across servers and minimize network congestion. The network is abstracted as a graph with capacities assigned to the edges. The Max flow algorithm finds the optimal flow path that maximizes throughput at minimum cost. However, the capacities need to be updated dynamically (real-time).
+
+**Challenges**: Load balancing millions of requests, Dynamic updates.
+
+**Market Benefits**: Scalability, Cost savings, Low latency.
+
+**Design techniques and algorithms:**  
+-  **Max Flow algorithm - Ford Fulkerson** BFS
+   - **Time Complexity:** O(V*E^2) where E is the number of edges and V is the number of vertices of the graph.
+   - **Space Complexity:** O(V) for queue.
+
+#### 8. Autocompletion of search query
+The viewers can sometimes search for longer titles in the search bar. Autocompleting the next possible word might help enhance the user experience. As the user starts typing in a word, the completion for that word can be provided using tries. NLP techniques can also be applied for accurate autocompletion.
+
+**Challenges**: Real-time correction, predicting user's intent, personalization.
+
+**Market Benefits**: Improved user experience and increased user retention rates.
+
+**Design techniques and algorithms:**  
+-  **Trie Data Structure** Greedy approach, heuristic-based
+   - **Time Complexity:** O(K) for insertion and searching where K is the length of the string.
+   - **Space Complexity:** O(N*avgK) where N is the number of words and avgK is the average length of the words.
+
 ### References
 - [YouTube Market Stats](https://www.simplilearn.com/youtube-marketing-stats-article)
