@@ -73,6 +73,31 @@ The data packets of the video need to flow through several nodes including serve
 -  **Floyd Warshall** Dynamic programming approach
    - **Time Complexity:** O(V^3) where V is the number of vertices in the graph.
    - **Space Complexity:** O(V^2), to create a 2-D matrix that stores the shortest distance for each pair of nodes.
+ 
+#### 4. Streaming optimization
+The CDN has cached versions of the transcoded videos based on regional popularity. This is the reason why less popular videos take more time to load as compared to popular ones they are not streamed from the CDN. Videos are streamed from CDN directly. The edge server closest to you will deliver the video. Partnering with ISPs might help improve viewer experience and reduce bandwidth charges. An A* search can be used to find the most efficient path for content delivery through a network of servers, where the "heuristics" can consider server load and geographical closeness. A best-first search can also be used for the same purpose.
+
+**Challenges**: CDN costs, Smooth playback for all users.
+
+**Market Benefits**: Reduced latency, Cost savings, Smoother playback.
+
+**Design techniques and algorithms:**  
+-  **A * Search Algorithm:** Greedy approach, heuristic based
+   - **Time Complexity:** depends on the quality of the heuristic function but in worst case O(E), where E is the number of edges in the graph.
+   - **Space Complexity:** O(V) auxiliary space in worst case.
+-  **Best first search** Priority queue, BFS
+   - **Time Complexity:** O(N * log N) , where N is number of nodes.
+   - **Space Complexity:** O(N) auxiliary space in worst case.
+
+#### 5. Video Recommendations
+Viewers interact with videos in many ways like linking, commenting, sharing, and watching a certain type of content for longer hours. A viewer's watch history. Liking and preferences can be used to recommend similar videos to the user. Item-based collaborative filtering algorithms can be used to recommend videos identical to the ones the viewer has watched. A user-item interaction matrix can be created and similarity is calculated using cosine similarity. The most similar items for the target are selected for recommendation. ALS (Alternating Least Squares) algorithm is another algorithm used in collaborative filtering with can find relations between users and videos
+
+**Challenges**: Real-time processing, Data overload.
+
+**Market Benefits**: Personalization, increased user satisfaction.
+
+**Design techniques and algorithms:**  
+-  **Collaborative filtering: ALS Algorithm** 
 
 ### References
 - [YouTube Market Stats](https://www.simplilearn.com/youtube-marketing-stats-article)
