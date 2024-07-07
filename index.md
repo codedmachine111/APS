@@ -266,8 +266,8 @@ View Implementation: [Simple Consistent Hashing Example](https://github.com/code
 CDNs need to cache the data for the most popular content in a particular region. This includes data like HTML documents, stylesheets, JavaScript files, transcoded video segments, metadata, etc. There are several cache replacement algorithms for maintaining the cached data in a CDN server. A Least Recently Used (LRU) cache replacement algorithm can be used to remove the data that is least recently used from the memory [17].
 
 <p align="center">
-  <img src="https://github.com/codedmachine111/APS/assets/88738817/f69ff70e-8628-4a6c-8728-e08744d76efa" width="700" alt="CDN Caching">
-  <p align="center"><em>A CDN Caching documents (HTML, JS, compressed video segments, etc) [17]</em></p>
+  <img src="https://github.com/codedmachine111/APS/assets/88738817/1081d430-3757-4faa-9520-472f074c9bc4" width="700" alt="CDN Caching">
+  <p align="center"><em>A CDN Caching documents with LRU eviction policy (HTML, JS, compressed video segments, etc) [17]</em></p>
 </p>
 
 **Challenges**: Cache invalidation, Cache consistency.
