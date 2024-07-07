@@ -8,7 +8,7 @@
 ### Table of Contents
 - [Introduction](#introduction)
 - [Objectives](#objectives)
-- [Journey of Content](#journey-of-content)
+- [Journey of Content](#journey-of-the-content)
 - [Business Use Cases](#business-use-cases)
 
 ## Introduction
