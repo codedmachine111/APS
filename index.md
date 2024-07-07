@@ -38,7 +38,7 @@ Initially, when the creator tries to upload a video to YouTube, the file is dire
 ## Business Use Cases
 
 ### 1. Video Transcoding
-YouTube handles more than 500 hours of video data being uploaded every minute. The time for processing these videos will significantly impact the latency and user experience. Transcoding is a computationally intensive operation that is done only once while uploading the videos. Compression algorithms like HEVC (High-Efficiency Video Coding) can be used here to compress the video into multiple formats and resolutions. Huffman coding [2] algorithm can be potentially used for compressing a significant amount of metadata like video duration, title, description, tags, subtitles, thumbnails etc. The uploaded video can be separated into video and audio components and algorithms like AAC (Advanced Audio Codec) can be used to convert audio into multiple formats and bitrates [3].
+YouTube handles more than 500 hours of video data being uploaded every minute. The time for processing these videos will significantly impact the latency and user experience. Transcoding is a computationally intensive operation done only once while uploading the videos. Compression algorithms like HEVC (High-Efficiency Video Coding) can be used here to compress the video into multiple formats and resolutions. Huffman coding [2] algorithm can be potentially used for compressing a significant amount of metadata like video duration, title, description, tags, subtitles, thumbnails, etc. The uploaded video can be separated into video and audio components and algorithms like AAC (Advanced Audio Codec) can be used to convert audio into multiple formats and bitrates [3].
 
 **Challenges**: Handling large video data, Efficient and fast video processing.
 
@@ -56,7 +56,7 @@ Different creators have different video processing requirements. Some might add 
   <img src="https://github.com/codedmachine111/APS/assets/88738817/c1bcc3d0-7b06-4187-bfe9-b57b84bc2bed" width="600" alt="Example for DAG">
   <p align="center"><em>Example for a Directed Acyclic Graph with stages.</em></p>
 </p>
-A resource manager can be used for managing the efficiency of resource allocation. It needs to have 3 queues: the "Task queue" which is a priority queue that contains the tasks to be executed; the "Worker queue" which is also a priority queue that contains information about worker utilization; and the "Running queue" that contains information about currently running tasks and workers [1]. The task scheduler picks the highest priority task and the most optimal worker.
+A resource manager can be used for managing the efficiency of resource allocation. It needs to have 3 queues: the "Task queue" which is a priority queue that contains the tasks to be executed; the "Worker queue" which is also a priority queue that contains information about worker utilization; and the "Running queue" that includes information on currently running tasks and workers [1]. The task scheduler picks the highest priority task and the most optimal worker.
 
 <p align="center">
   <img src="https://github.com/codedmachine111/APS/assets/88738817/dc07afae-e516-4c9e-bc9b-cb6f5444459e" width="800" alt="Message queues">
@@ -77,11 +77,11 @@ A resource manager can be used for managing the efficiency of resource allocatio
 View Implementation: [Topological Sort](https://github.com/codedmachine111/APS/blob/master/Class/topologicalSort.cpp), [Priority Queue](https://github.com/codedmachine111/APS/blob/master/Class/minHeapPQ.cpp)
 
 ### 3. Routing the data
-The data packets of the video need to flow through several nodes including servers, data centers, CDNs, and several network core components before they reach the viewer's device. To find the most optimal path to route the data, the network can be abstracted as a graph where each node represents a network device, and an edge between two connected devices represents the link with a cost associated with it. The link-cos (edge weight) can be decided based on various factors like bandwidth, financial costs, congestion, etc. The Dijkstra's algorithm [4] can be used here to find the shortest path from a source node to all other nodes on the network, minimizing latency at all stages by avoiding congested routes. If the network topology is fairly stable, the Floyd-Warshall algorithm can also be used to create a matrix of shortest path (for all node pairs) as a pre-compute for faster lookups in routing [5].
+The data packets of the video need to flow through several nodes including servers, data centers, CDNs, and several network core components before they reach the viewer's device. To find the most optimal path to route the data, the network can be abstracted as a graph where each node represents a network device, and an edge between two connected devices represents the link with a cost associated with it. The link-cos (edge weight) can be decided based on various factors like bandwidth, financial costs, congestion, etc. Dijkstra's algorithm [4] can be used here to find the shortest path from a source node to all other nodes on the network, minimizing latency at all stages by avoiding congested routes. If the network topology is fairly stable, the Floyd-Warshall algorithm can also be used to create a matrix of shortest path (for all node pairs) as a pre-compute for faster lookups in routing [5].
 
 <p align="center">
   <img src="https://github.com/codedmachine111/APS/assets/88738817/3b8bf100-f506-4126-8ed7-4caf07c60c25" width="800" alt="Dijkstra's Algo example">
-  <p align="center"><em>Dijkstra's algorithm used to calculate shortest path for routing data.[9].</em></p>
+  <p align="center"><em>Dijkstra's algorithm is used to calculate the shortest path for routing data.[9].</em></p>
 </p>
 
 **Challenges**: High traffic, Fluctuating network conditions.
@@ -119,7 +119,7 @@ The CDN has cached versions of the transcoded videos based on regional popularit
 View Implementation: [A* Search Algorithm](https://github.com/Rikora/A-star/blob/master/src/main.cpp), [Detailed A*](https://github.com/daancode/a-star), [Best first search](https://github.com/codedmachine111/APS/blob/master/Class/bestFirstSearch.cpp)  
 
 ### 5. Video Recommendations
-Viewers interact with videos in many ways like linking, commenting, sharing, and watching a certain type of content for longer hours. A viewer's watch history. Liking and preferences can be used to recommend similar videos to the user. Item-based collaborative filtering algorithms can be used to recommend videos identical to the ones the viewer has watched. A user-item interaction matrix can be created and similarity is calculated using cosine similarity. The most similar items for the target are selected for recommendation. ALS (Alternating Least Squares) algorithm is another algorithm used in collaborative filtering with can find relations between users and videos [8].
+Viewers interact with videos in many ways like linking, commenting, sharing, and watching a certain type of content for longer hours. A viewer's watch history. Liking and preferences can be used to recommend similar videos to the user. Item-based collaborative filtering algorithms can be used to recommend videos identical to the ones the viewer has watched. A user-item interaction matrix can be created and similarity is calculated using cosine similarity. The most similar items for the target are selected for recommendation. ALS (Alternating Least Squares) algorithm is another algorithm used in collaborative filtering that can find relations between users and videos [8].
 
 <p align="center">
   <img src="https://github.com/codedmachine111/APS/assets/88738817/db06218d-1fb6-447f-9922-7a6a95a71d97" width="700" alt="Content Recommendations">
@@ -131,13 +131,13 @@ Viewers interact with videos in many ways like linking, commenting, sharing, and
 **Market Benefits**: Personalization, increased user satisfaction.
 
 **Design techniques and algorithms:**  
--  **Collaborative filtering: ALS Algorithm**  Item based filtering
-    - **Time Complexity:** O(U*I^2) where U and I represent total number of Users and Items.
+-  **Collaborative filtering: ALS Algorithm**  Item-based filtering
+    - **Time Complexity:** O(U*I^2) where U and I represent the total number of Users and Items.
     - **Space Complexity:** O(U*I) for the 2D matrix  
 View Implementation: [Collaborative Filtering](https://github.com/bowbowbow/CollaborativeFiltering/blob/master/recommender.cpp)  
 
 ### 6. Autocompletion of search query
-The viewers can sometimes search for longer titles in the search bar. Autocompleting the next possible word might help enhance the user experience. As the user starts typing in a word, the completion for that word can be provided using tries. The Trie Data Structure is used here to suggest words based on prefix [12]. NLP techniques can also be applied for accurate autocompletion.
+The viewers can sometimes search for longer titles in the search bar. Autocompleting the next possible word might help enhance the user experience. As the user starts typing in a word, the completion for that word can be provided using tries. The Trie Data Structure is used here to suggest words based on prefixes [12]. NLP techniques can also be applied for accurate autocompletion.
 
 <p align="center">
   <img src="https://github.com/codedmachine111/APS/assets/88738817/a973cd4e-ac94-405b-8446-2c57936ef703" width="600" alt="Auto complete">
@@ -145,8 +145,8 @@ The viewers can sometimes search for longer titles in the search bar. Autocomple
 </p>
 
 <p align="center">
-  <img src="https://github.com/codedmachine111/APS/assets/88738817/61cee6f2-6c83-441b-b477-8a3f38119332" width="600" alt="Auto complete">
-  <p align="center"><em>Example for how trie suggests the words "Amazon" and "Amazing" based on the prefix "AMAZ" [12].</em></p>
+  <img src="https://github.com/codedmachine111/APS/assets/88738817/61cee6f2-6c83-441b-b477-8a3f38119332" width="600" alt="Autocomplete">
+  <p align="center"><em>Example for how Trie suggests the words "Amazon" and "Amazing" based on the prefix "AMAZ" [12].</em></p>
 </p>
 
 **Challenges**: Real-time correction, predicting user's intent, personalization.
