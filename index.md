@@ -293,6 +293,28 @@ As CDN servers store data like HTML documents, stylesheets, JavaScript files, tr
    - **Space Complexity:** Linear [O(n)], for storing Huffman tree and encoded data.   
 View Implementation: [Huffman Coding](https://github.com/codedmachine111/APS/blob/master/Class/huffmanCoding.cpp)
 
+### 15. Load Balancing Requests
+YouTube handles a huge traffic of video requests using a network of CDNs. These CDNs do the task of load balancing. They direct user requests to the server with minimal resource usage like CPU, memory, and bandwidth. This is very crucial when popular videos are being watched by millions of users. All these servers in the CDN cluster don't necessarily have the same resources like RAM and memory. Hence, it is important to handle incoming requests and direct them to a server that can process them efficiently. Load balancing algorithms like Round Robin and Weighted Round Robin help to direct requests to the server based on their metrics (Health metrics). These algorithms can be static or dynamic like the Least connection method.
+
+<p align="center">
+  <img src="https://github.com/codedmachine111/APS/assets/88738817/72fbef9f-9e96-4f8b-926a-94c1055ec858" width="700" alt="Load balancing">
+  <p align="center"><em>An overview of how load balancing works [18]</em></p>
+</p>
+
+**Challenges**: Detecting and handling dynamic traffic patterns and efficient resource utilization.
+
+**Market Benefits**: Scalablity, and Availablity due to reduced chances of server overload.
+
+**Design techniques and algorithms:**  
+- **Round Robin Load Balancing:** Static, Greedy approach
+   - **Time Complexity:** O(1) if number of servers are static.
+   - **Space Complexity:** O(N) where N represents number of servers.
+- **Weighted Round Robin Load Balancing:** Static, Greedy approach
+   - **Time Complexity:** O(1) if number of servers are static.
+   - **Space Complexity:** O(N) where N represents number of servers.
+
+View Implementation: [Round Robin](https://github.com/codedmachine111/APS/blob/master/Class/roundrobin.cpp), [Weighted Round Robin](https://github.com/hedzr/lb)  
+
 ### References
 [1] ByteByteGo. (2023). "System Design Interview - Design YouTube". Online. ByteByteGo. [https://bytebytego.com/courses/system-design-interview/design-youtube](https://bytebytego.com/courses/system-design-interview/design-youtube)  
 [2] Dremio. (2024). "Huffman Coding". Online. Dreamio. [https://www.dremio.com/wiki/huffman-coding/](https://www.dremio.com/wiki/huffman-coding/)  
@@ -310,3 +332,5 @@ View Implementation: [Huffman Coding](https://github.com/codedmachine111/APS/blo
 [15] GeeksForGeeks. (2024). "Introduction to Pattern Searching". Online. GeeksForGeeks. [https://www.geeksforgeeks.org/introduction-to-pattern-searching/](https://www.geeksforgeeks.org/introduction-to-pattern-searching/)  
 [16] Tim S. (2020). " The Algorithm Series: The Math Behind the CDN". Online. Streamingmedia. [https://www.streamingmedia.com/Articles/Editorial/Featured-Articles/The-Algorithm-Series-The-Math-Behind-the-CDN-136194.aspx?pageNum=2](https://www.streamingmedia.com/Articles/Editorial/Featured-Articles/The-Algorithm-Series-The-Math-Behind-the-CDN-136194.aspx?pageNum=2)  
 [17] Hayk S. (2024). "The Ultimate Guide to Caching and CDNs". Online. Medium. [https://hayk-simonyan.medium.com/the-ultimate-guide-to-caching-and-cdns-80e0d773e624](https://hayk-simonyan.medium.com/the-ultimate-guide-to-caching-and-cdns-80e0d773e624)  
+[18] PsychzNetworks. (2020). "CDN and Load Balancer: Ultimate combination for efficient content delivery". Online. PsychzNetworks. [https://www.psychz.net/client/blog/en/cdn-and-load-balancer-ultimate-combination-for-efficient-content-delivery-.html](https://www.psychz.net/client/blog/en/cdn-and-load-balancer-ultimate-combination-for-efficient-content-delivery-.html)  
+[19] 
